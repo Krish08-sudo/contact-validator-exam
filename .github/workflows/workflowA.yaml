@@ -1,0 +1,25 @@
+name: Runt Test
+on:
+  pull_request:
+    branches:
+      -main
+
+jobs:
+  test:
+    run-on: ubuntu-latest
+    steps:
+      -name: Checkout repository
+      uses: action/checkout@v4
+
+      -name: Setup Python
+      uses: action/setup-python@v5
+      with:
+        python-version: '3.x'
+
+      -name: Install Dependencies
+      uses: pip install -r requirements.txt
+
+      -name: Run Test
+      run: pytest
+
+
