@@ -46,3 +46,11 @@ def test_normalize_phone():
 def test_normalize_invalid_phone():
     with pytest.raises(ValueError):
         normalize_phone("123")
+
+
+def test_mask_email_basic():
+    email = "priya@example.com"
+
+    result = mask_email(email)
+
+    assert result == "pr***@example.com"

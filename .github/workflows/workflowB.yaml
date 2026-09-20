@@ -1,24 +1,25 @@
 name: Coverage Test
-on: 
-  pull_request: 
+
+on:
+  pull_request:
     branches:
-    - main
+      - main
 
 jobs:
   coverage:
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-    steps: 
-    -name: Checkout Repository
-    uses: actions/checkout@v4
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-    -name: Setup Python
-    use: setup-python@v5
-    with:
-      python-version: '3.x'
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
 
-    -name: Install Dependencies
-    use: pip install -r requirements.txt
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
 
-    -name: Run Test With Coverages
-    use: pytest --cov=src --cov-report=term-mising --cov-fail-under=85
+      - name: Run Tests With Coverage
+        run: python -m pytest --cov=src --cov-report=term-missing --cov-fail-under=85
